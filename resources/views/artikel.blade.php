@@ -8,7 +8,7 @@
             
             <p class="mb-3 text-muted text-center">
                 Kategori: 
-                <a href="/kategori/{{ $artikel->kategori->link_kategori }}" class="text-primary text-decoration-none fw-semibold">
+                <a href="/artikel?kategori={{ $artikel->kategori->link_kategori }}" class="text-primary text-decoration-none fw-semibold">
                     {{ $artikel->kategori->nama }}
                 </a>
             </p>
@@ -24,7 +24,7 @@
                     
                     <h6 class="card-subtitle text-muted text-center mb-4">
                         Ditulis oleh: 
-                        <a href="/penulis/{{ $artikel->penulis->username }}" class="text-secondary text-decoration-none">
+                        <a href="/artikel?penulis={{ $artikel->penulis->username }}" class="text-secondary text-decoration-none">
                             {{ $artikel->penulis->nama }}
                         </a>
                     </h6>

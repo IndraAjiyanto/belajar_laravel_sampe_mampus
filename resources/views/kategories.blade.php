@@ -9,7 +9,7 @@
             <article class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h3 class="card-title">
-                        <a href="/kategori/{{ $kategori->link_kategori }}" class="text-primary text-decoration-none">
+                        <a href="/artikel?kategori={{ $kategori->link_kategori }}" class="text-primary text-decoration-none">
                             {{ $kategori->nama }}
                         </a>
                     </h3>

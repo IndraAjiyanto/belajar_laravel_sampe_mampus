@@ -3,6 +3,22 @@
 @section('content')
 <div class="container my-5">
     <h1 class="mb-4 text-center">{{ $tittle }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/artikel">
+                @if(request('kategori'))
+                <input type="hidden" class="form-control"  name="kategori" value="{{ request('kategori') }}">
+                @endif
+                @if(request('penulis'))
+                <input type="hidden" class="form-control"  name="penulis" value="{{ request('penulis') }}">
+                @endif
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="searching" name="search" value="{{ request('search') }}">
+                <button class="btn btn-outline-secondary" type="submit">search</button>
+            </div>
+            </form>
+        </div>
+    </div>
     @if($artikels->count())
     <div class="row">
         @foreach($artikels as $artikel)
@@ -25,14 +41,14 @@
                     </p>
                     <p class="card-subtitle text-muted mb-2">
                         Ditulis oleh: 
-                        <a href="/penulis/{{ $artikel->penulis->username }}" 
+                        <a href="/artikel?penulis={{ $artikel->penulis->username }}" 
                            class="text-secondary">
                            {{ $artikel->penulis->nama }}
                         </a>
                     </p>
                     <p class="card-subtitle text-muted">
                         Kategori: 
-                        <a href="/kategori/{{ $artikel->kategori->link_kategori }}" 
+                        <a href="/artikel?kategori={{ $artikel->kategori->link_kategori }}" 
                            class="text-secondary">
                            {{ $artikel->kategori->nama }}
                         </a>
@@ -52,5 +68,6 @@
     @else
     <p class="text-center fs-4">Tidak Bisa Menemukan Artikel</p>
     @endif
+    {{ $artikels->links() }}
 </div>
 @endsection

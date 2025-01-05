@@ -9,7 +9,7 @@
             <article class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h3 class="card-title">
-                        <a href="/penulis/{{ $penulis->username }}" class="text-primary text-decoration-none">
+                        <a href="/artikel?penulis={{ $penulis->username }}" class="text-primary text-decoration-none">
                             {{ $penulis->nama }}
                         </a>
                     </h3>
