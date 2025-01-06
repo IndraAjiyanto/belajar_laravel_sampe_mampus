@@ -22,6 +22,11 @@
           <a class="nav-link {{ ($active === 'penulis') ? 'active' : ''}}" href="/penulis">Penulis</a>
         </li>
       </ul>
+      <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+          <a class="nav-link {{ ($active === 'login') ? 'login' : ''}}" href="/login"><i class="bi bi-box-arrow-in-right"></i>Login</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

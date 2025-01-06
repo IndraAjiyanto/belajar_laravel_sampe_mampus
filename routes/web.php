@@ -6,6 +6,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,6 @@ Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/kategori/{kategori:link_kategori}', [KategoriController::class, 'show']);
 Route::get('/penulis', [UserController::class, 'index']);
 Route::get('/penulis/{penulis:username}', [UserController::class, 'show']);
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/registrasi', [RegistrasiController::class, 'index']);
+Route::post('/registrasi', [RegistrasiController::class, 'store']);
