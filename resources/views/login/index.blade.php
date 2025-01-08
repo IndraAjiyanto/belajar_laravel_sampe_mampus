@@ -14,16 +14,25 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
+
+            @if(session()->has('loginError'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('loginError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             <h3 class="mb-5">{{ $tittle }}</h3>
 
             <form action="/login" method="post">
+              @csrf
             <div class="form-floating mb-4">
-              <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+              <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" />
               <label for="typeEmailX-2">Email</label>
             </div>
 
             <div class="form-floating mb-4">
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+              <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg" />
               <label for="typePasswordX-2">Password</label>
             </div>
 

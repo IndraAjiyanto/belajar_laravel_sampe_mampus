@@ -22,11 +22,29 @@
           <a class="nav-link {{ ($active === 'penulis') ? 'active' : ''}}" href="/penulis">Penulis</a>
         </li>
       </ul>
+
       <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
+        @auth
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ auth()->user()->nama }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+            <form action="/logout" method="post">
+              @csrf
+            <li><button class="dropdown-item" type="submit"> log out </button></li>
+            </form>
+          </ul>
+        </li>
+        @else
+        <li class="nav-item">
           <a class="nav-link {{ ($active === 'login') ? 'login' : ''}}" href="/login"><i class="bi bi-box-arrow-in-right"></i>Login</a>
         </li>
+        @endauth
+
       </ul>
+
     </div>
   </div>
 </nav>

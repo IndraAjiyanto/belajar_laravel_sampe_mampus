@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/kategori/{kategori:link_kategori}', [KategoriController::class, 'show']);
 Route::get('/penulis', [UserController::class, 'index']);
 Route::get('/penulis/{penulis:username}', [UserController::class, 'show']);
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authentication']);
+Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/registrasi', [RegistrasiController::class, 'index']);
 Route::post('/registrasi', [RegistrasiController::class, 'store']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
