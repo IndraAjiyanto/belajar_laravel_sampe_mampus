@@ -43,6 +43,10 @@ class Artikel extends Model
     public function penulis(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getRouteKeyName(){
+        return 'link';
+    }
 }
 
 
