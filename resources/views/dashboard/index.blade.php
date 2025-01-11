@@ -15,8 +15,8 @@
     </div>
   </div>
 
-  <!-- Statistik Ringkas -->
-  <div class="row g-3 mb-4">
+
+  <!-- <div class="row g-3 mb-4">
     <div class="col-md-4">
       <div class="card border-0 shadow-sm">
         <div class="card-body">
@@ -43,7 +43,6 @@
     </div>
   </div>
 
-  <!-- Tabel Data -->
   <div class="table-responsive">
     <h5 class="mb-3">Recent Activities</h5>
     <table class="table table-striped table-hover align-middle">
@@ -89,5 +88,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 @endsection
