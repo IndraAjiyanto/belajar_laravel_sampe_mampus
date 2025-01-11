@@ -37,4 +37,5 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/registrasi', [RegistrasiController::class, 'index']);
 Route::post('/registrasi', [RegistrasiController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/artikel/checkLink', [DashboardArtikelController::class, 'checkLink'])->middleware('auth');
 Route::resource('/dashboard/artikel', DashboardArtikelController::class)->middleware('auth');

@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Kategori;
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Artikel extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $guarded = [
         'id'
@@ -46,6 +48,15 @@ class Artikel extends Model
 
     public function getRouteKeyName(){
         return 'link';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'link' => [
+                'source' => 'judul'
+            ]
+        ];
     }
 }
 

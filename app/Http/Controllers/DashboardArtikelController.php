@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardArtikelController extends Controller
 {
@@ -13,7 +15,7 @@ class DashboardArtikelController extends Controller
     public function index()
     {
             return view('dashboard.artikels',[
-                'artikels' => Artikel::where('id', auth()->user()->id)->get()
+                'artikels' => Artikel::where('user_id', auth()->user()->id)->get()
             ]);
     }
 
@@ -22,7 +24,9 @@ class DashboardArtikelController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.create',[
+            'kategoris' => Kategori::all()
+        ]);
     }
 
     /**
@@ -30,7 +34,16 @@ class DashboardArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedata = $request->validate([
+            'judul' => ['required','max:255'],
+            'link' => ['required','unique:artikels'],
+            'kategori_id' => 'required',
+            'isi' => 'required'
+        ]);
+
+        $validatedata['user_id'] = auth()->user()->id;
+        Artikel::create($validatedata);
+        return redirect('dashboard/artikel')->with('success','berhasil membuat artikel');
     }
 
     /**
@@ -65,5 +78,10 @@ class DashboardArtikelController extends Controller
     public function destroy(Artikel $artikel)
     {
         //
+    }
+
+    public function checkLink(Request $request){
+        $link = SlugService::createSlug(Artikel::class, 'link', $request->judul);
+        return response()->json(['link' => $link]);
     }
 }
