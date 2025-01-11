@@ -33,6 +33,20 @@
         </div>
     </article>
 
+    <!-- Tombol Edit dan Hapus -->
+    <div class="mt-4 d-flex justify-content-center gap-3">
+        <a href="/dashboard/artikel/{{ $artikel->link }}/edit" class="btn btn-warning rounded-pill px-4 shadow-sm">
+            <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <form action="/dashboard/artikel/{{ $artikel->link }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm" onclick="return confirm('Yakin ingin menghapus artikel ini?')">
+                <i class="bi bi-trash"></i> Hapus
+            </button>
+        </form>
+    </div>
+
     <!-- Tombol Kembali -->
     <div class="mt-4 text-center">
         <a href="/dashboard/artikel" class="btn btn-primary rounded-pill px-4 shadow-sm">

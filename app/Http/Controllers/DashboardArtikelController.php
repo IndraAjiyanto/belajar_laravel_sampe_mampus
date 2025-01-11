@@ -61,7 +61,10 @@ class DashboardArtikelController extends Controller
      */
     public function edit(Artikel $artikel)
     {
-        //
+        return view('dashboard.edit',[
+            'artikel' => $artikel,
+            'kategoris' => Kategori::all()
+        ]);
     }
 
     /**
@@ -69,7 +72,20 @@ class DashboardArtikelController extends Controller
      */
     public function update(Request $request, Artikel $artikel)
     {
-        //
+        $rules = [
+            'judul' => ['required','max:255'],
+            'kategori_id' => 'required',
+            'isi' => 'required'
+        ];
+
+        if($request->link != $artikel->link){
+            $rules['link'] = ['required','unique:artikels'];
+        }
+
+        $validatedata = $request->validate($rules);
+        $validatedata['user_id'] = auth()->user()->id;
+        Artikel::where('id', $artikel->id)->update($validatedata);
+        return redirect('dashboard/artikel')->with('success','berhasil update artikel');
     }
 
     /**
@@ -77,7 +93,8 @@ class DashboardArtikelController extends Controller
      */
     public function destroy(Artikel $artikel)
     {
-        //
+        Artikel::destroy($artikel->id);
+        return redirect('dashboard/artikel')->with('success','berhasil membuat artikel');
     }
 
     public function checkLink(Request $request){
