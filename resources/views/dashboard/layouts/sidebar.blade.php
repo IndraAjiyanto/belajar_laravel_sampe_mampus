@@ -15,13 +15,26 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-2 text-dark fw-semibold {{ Request::is('dashboard/artikel') ? 'active' : '' }}" href="/dashboard/artikel">
+          <a class="nav-link d-flex align-items-center gap-2 text-dark fw-semibold {{ Request::is('dashboard/artikel*') ? 'active' : '' }}" href="/dashboard/artikel">
             <i class="bi bi-file-earmark-text"></i> Artikel
           </a>
         </li>
         <li class="nav-item">
         </li>
       </ul>
+
+      @can('admin')
+      <h6 class = "sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Admin</span>
+        </h6>
+      <ul class="nav flex-column mb-auto">
+      <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 text-dark fw-semibold {{ Request::is('dashboard/kategori*') ? 'active' : '' }}" href="/dashboard/kategori">
+            <i class="bi bi-house-door"></i> Kategori
+          </a>
+        </li>
+      </ul>
+      @endcan
     </div>
   </div>
 </div>

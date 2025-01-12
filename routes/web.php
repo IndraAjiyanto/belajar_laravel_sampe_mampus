@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardArtikelController;
+use App\Http\Controllers\AdminKategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,4 @@ Route::post('/registrasi', [RegistrasiController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/artikel/checkLink', [DashboardArtikelController::class, 'checkLink'])->middleware('auth');
 Route::resource('/dashboard/artikel', DashboardArtikelController::class)->middleware('auth');
+Route::resource('/dashboard/kategori', AdminKategoriController::class)->except('show')->middleware('auth');
