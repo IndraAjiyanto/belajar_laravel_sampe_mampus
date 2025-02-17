@@ -20,7 +20,7 @@ class DashboardArtikelController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource. 
      */
     public function create()
     {
@@ -81,7 +81,7 @@ class DashboardArtikelController extends Controller
         if($request->link != $artikel->link){
             $rules['link'] = ['required','unique:artikels'];
         }
-
+        
         $validatedata = $request->validate($rules);
         $validatedata['user_id'] = auth()->user()->id;
         Artikel::where('id', $artikel->id)->update($validatedata);
@@ -101,4 +101,5 @@ class DashboardArtikelController extends Controller
         $link = SlugService::createSlug(Artikel::class, 'link', $request->judul);
         return response()->json(['link' => $link]);
     }
+
 }
